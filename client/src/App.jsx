@@ -6,7 +6,6 @@ import { FullPlayerModal } from './components/player/FullPlayerModal';
 import { QueueDrawer } from './components/player/QueueDrawer';
 
 import { Home } from './pages/Home';
-import { Browse } from './pages/Browse';
 import { Search } from './pages/Search';
 import { Library } from './pages/Library';
 import { AuthModal } from './components/auth/AuthModal';
@@ -22,8 +21,7 @@ export function App() {
       {/* Main Content Viewport */}
       <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6">
         {currentTab === 'home' && <Home onGoToSearch={() => setCurrentTab('search')} />}
-        {currentTab === 'browse' && <Browse />}
-        {currentTab === 'search' && <Search />}
+        {(currentTab === 'search' || currentTab === 'browse') && <Search />}
         {currentTab === 'library' && <Library />}
       </main>
 

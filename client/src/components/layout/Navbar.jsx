@@ -7,8 +7,7 @@ export const Navbar = ({ currentTab, setCurrentTab }) => {
 
   const navItems = [
     { id: 'home', label: 'Home', icon: Home },
-    { id: 'browse', label: 'Browse', icon: Compass },
-    { id: 'search', label: 'Search', icon: Search },
+    { id: 'search', label: 'Search & Explore', icon: Search },
     { id: 'library', label: 'My Library', icon: Heart },
   ];
 
