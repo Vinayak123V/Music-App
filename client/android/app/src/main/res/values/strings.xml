@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Bhakti Music</string>
+    <string name="title_activity_main">Bhakti Music</string>
+    <string name="package_name">com.bhaktimusic.app</string>
+    <string name="custom_url_scheme">com.bhaktimusic.app</string>
+</resources>

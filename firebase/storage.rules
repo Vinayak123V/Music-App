@@ -1,0 +1,46 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && (
+        request.auth.token.admin == true ||
+        firestore.exists(/databases/(default)/documents/admins/$(request.auth.uid))
+      );
+    }
+
+    // Audio storage: audio/{songId}/{fileName}
+    match /audio/{songId}/{fileName} {
+      // Allow public streaming of published audio
+      allow read: if true;
+
+      // Allow admin uploads: audio files up to 50MB
+      allow write: if isAdmin() &&
+                   request.resource.size < 50 * 1024 * 1024 &&
+                   request.resource.contentType.matches('audio/.*');
+    }
+
+    // Artwork storage: artwork/{songId}/{fileName}
+    match /artwork/{songId}/{fileName} {
+      // Allow public fetching of song artwork
+      allow read: if true;
+
+      // Allow admin uploads: image files up to 5MB
+      allow write: if isAdmin() &&
+                   request.resource.size < 5 * 1024 * 1024 &&
+                   request.resource.contentType.matches('image/.*');
+    }
+
+    // Category and Deity artwork
+    match /categories/{categoryId}/{fileName} {
+      allow read: if true;
+      allow write: if isAdmin() &&
+                   request.resource.size < 5 * 1024 * 1024 &&
+                   request.resource.contentType.matches('image/.*');
+    }
+  }
+}

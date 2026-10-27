@@ -1,0 +1,248 @@
+{
+  "admins": [
+    {
+      "uid": "admin-seed-uid-1008",
+      "email": "admin@bhaktimusic.app",
+      "displayName": "Bhakti Music Chief Administrator",
+      "role": "superadmin",
+      "createdAt": "2026-10-26T00:00:00Z"
+    }
+  ],
+  "deities": [
+    {
+      "id": "shiva",
+      "name": "Lord Shiva",
+      "slug": "lord-shiva",
+      "title": "Mahadev, Bholenath & Nataraja",
+      "description": "The supreme transformer and protector, lord of meditation and cosmic dance.",
+      "iconName": "om",
+      "sortOrder": 1
+    },
+    {
+      "id": "krishna",
+      "name": "Lord Krishna",
+      "slug": "lord-krishna",
+      "title": "Govinda, Madhava & Radha-Krishna",
+      "description": "The embodiment of divine love, compassion, and eternal wisdom of the Gita.",
+      "iconName": "flute",
+      "sortOrder": 2
+    },
+    {
+      "id": "rama",
+      "name": "Lord Rama",
+      "slug": "lord-rama",
+      "title": "Maryada Purushottama & Sita-Ram",
+      "description": "The ideal protector of Dharma, righteousness, and virtue.",
+      "iconName": "bow",
+      "sortOrder": 3
+    },
+    {
+      "id": "hanuman",
+      "name": "Lord Hanuman",
+      "slug": "lord-hanuman",
+      "title": "Sankat Mochan & Bajrangbali",
+      "description": "Supreme devotee of Rama, giver of strength, wisdom, and courage.",
+      "iconName": "mace",
+      "sortOrder": 4
+    },
+    {
+      "id": "ganesha",
+      "name": "Lord Ganesha",
+      "slug": "lord-ganesha",
+      "title": "Vighnaharta & Vinayaka",
+      "description": "The remover of all obstacles and lord of intellect and auspicious beginnings.",
+      "iconName": "modak",
+      "sortOrder": 5
+    },
+    {
+      "id": "durga",
+      "name": "Goddess Durga",
+      "slug": "goddess-durga",
+      "title": "Maa Ambe, Bhavani & Navadurga",
+      "description": "Supreme divine feminine energy conquering darkness and bestowing grace.",
+      "iconName": "trishul",
+      "sortOrder": 6
+    },
+    {
+      "id": "lakshmi",
+      "name": "Goddess Lakshmi",
+      "slug": "goddess-lakshmi",
+      "title": "Maa Mahalakshmi",
+      "description": "Goddess of auspicious prosperity, light, and spiritual abundance.",
+      "iconName": "lotus",
+      "sortOrder": 7
+    },
+    {
+      "id": "saraswati",
+      "name": "Goddess Saraswati",
+      "slug": "goddess-saraswati",
+      "title": "Maa Sharada & Vidya Devi",
+      "description": "Goddess of music, arts, learning, and supreme wisdom.",
+      "iconName": "veena",
+      "sortOrder": 8
+    }
+  ],
+  "categories": [
+    {
+      "id": "bhajans",
+      "name": "Bhajans",
+      "slug": "bhajans",
+      "type": "bhajan",
+      "sortOrder": 1,
+      "enabled": true,
+      "description": "Devotional hymns and songs expressing divine love and devotion."
+    },
+    {
+      "id": "aartis",
+      "name": "Aartis",
+      "slug": "aartis",
+      "type": "aarti",
+      "sortOrder": 2,
+      "enabled": true,
+      "description": "Ritual songs of worship accompanied by sacred light offerings."
+    },
+    {
+      "id": "mantras",
+      "name": "Mantras & Chants",
+      "slug": "mantras",
+      "type": "mantra",
+      "sortOrder": 3,
+      "enabled": true,
+      "description": "Sacred syllables and verses for spiritual elevation and inner peace."
+    },
+    {
+      "id": "kirtans",
+      "name": "Kirtans",
+      "slug": "kirtans",
+      "type": "kirtan",
+      "sortOrder": 4,
+      "enabled": true,
+      "description": "Congregational singing and call-and-response chanting of divine names."
+    },
+    {
+      "id": "chalisa",
+      "name": "Chalisa",
+      "slug": "chalisa",
+      "type": "chalisa",
+      "sortOrder": 5,
+      "enabled": true,
+      "description": "Forty-verse sacred devotional prayers dedicated to deities."
+    },
+    {
+      "id": "stotrams",
+      "name": "Stotrams & Suktams",
+      "slug": "stotrams",
+      "type": "stotram",
+      "sortOrder": 6,
+      "enabled": true,
+      "description": "Classical praise hymns reciting divine glories."
+    },
+    {
+      "id": "morning-prayers",
+      "name": "Morning Prayers",
+      "slug": "morning-prayers",
+      "type": "prayer",
+      "sortOrder": 7,
+      "enabled": true,
+      "description": "Soothing suprabhatam and morning aartis to begin your day with grace."
+    },
+    {
+      "id": "evening-prayers",
+      "name": "Evening Prayers",
+      "slug": "evening-prayers",
+      "type": "prayer",
+      "sortOrder": 8,
+      "enabled": true,
+      "description": "Calming sandhya prayers and chants for peaceful evenings."
+    },
+    {
+      "id": "meditation",
+      "name": "Meditation & Om Chants",
+      "slug": "meditation",
+      "type": "meditation",
+      "sortOrder": 9,
+      "enabled": true,
+      "description": "Deep acoustic vibrations and flute meditation for mindfulness."
+    }
+  ],
+  "songs": [
+    {
+      "id": "shiva-tandav-stotram",
+      "title": "Shiva Tandava Stotram",
+      "normalizedTitle": "shiva tandava stotram",
+      "artist": "Traditional Stotram / Pt. Hari Prasad",
+      "categoryId": "stotrams",
+      "deityId": "shiva",
+      "language": "Sanskrit",
+      "description": "The ecstatic hymn composed by Ravana celebrating Lord Shiva's cosmic dance.",
+      "storagePath": "audio/shiva-tandav-stotram/original.mp3",
+      "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/transcoded/4/41/Aum_sound.ogg/Aum_sound.ogg.mp3",
+      "artworkPath": "artwork/shiva-tandav-stotram/cover.jpg",
+      "artworkUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Shiva_by_Raja_Ravi_Varma.jpg/600px-Shiva_by_Raja_Ravi_Varma.jpg",
+      "durationSeconds": 554,
+      "published": true,
+      "featured": true,
+      "searchTokens": ["shiva", "tandava", "stotram", "sanskrit", "mahadev", "bholenath"],
+      "createdBy": "admin",
+      "rights": {
+        "rightsHolder": "Public Domain / Verified Devotional Archive",
+        "licenseReference": "CC-BY-SA 4.0 Devotional Music Catalog",
+        "permittedTerritories": ["IN", "GLOBAL"],
+        "permittedUsage": "Public non-commercial and commercial devotional streaming",
+        "commercialAuthorized": true
+      }
+    },
+    {
+      "id": "hanuman-chalisa",
+      "title": "Shree Hanuman Chalisa",
+      "normalizedTitle": "shree hanuman chalisa",
+      "artist": "Goswami Tulsidas / Hariharan",
+      "categoryId": "chalisa",
+      "deityId": "hanuman",
+      "language": "Hindi",
+      "description": "Forty sacred chaupais praising the devotion, immense strength, courage, and wisdom of Sankat Mochan Lord Hanuman.",
+      "storagePath": "audio/hanuman-chalisa/original.mp3",
+      "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/transcoded/1/1a/Gayatri_mantra.ogg/Gayatri_mantra.ogg.mp3",
+      "artworkPath": "artwork/hanuman-chalisa/cover.jpg",
+      "artworkUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Panchamukha_Hanuman.jpg/600px-Panchamukha_Hanuman.jpg",
+      "durationSeconds": 588,
+      "published": true,
+      "featured": true,
+      "searchTokens": ["hanuman", "chalisa", "bajrangbali", "sankat", "mochan", "hindi"],
+      "createdBy": "admin",
+      "rights": {
+        "rightsHolder": "Traditional Tulsidas Composition",
+        "licenseReference": "Standard Devotional Rights Ref #HN-108",
+        "permittedTerritories": ["IN", "GLOBAL"],
+        "permittedUsage": "Streaming & Personal Devotion",
+        "commercialAuthorized": true
+      }
+    },
+    {
+      "id": "achutam-keshavam",
+      "title": "Achyutam Keshavam Rama Narayanam",
+      "normalizedTitle": "achyutam keshavam rama narayanam",
+      "artist": "Pt. Jasraj / Traditional",
+      "categoryId": "bhajans",
+      "deityId": "krishna",
+      "language": "Hindi",
+      "description": "Soulful Krishna bhajan celebrating Krishna, Rama, and Govinda as the supreme protector.",
+      "storagePath": "audio/achutam-keshavam/original.mp3",
+      "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/transcoded/9/90/Gayatri_Mantra.ogg/Gayatri_Mantra.ogg.mp3",
+      "artworkPath": "artwork/achutam-keshavam/cover.jpg",
+      "artworkUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Radha_Krishna_by_Raja_Ravi_Varma.jpg/600px-Radha_Krishna_by_Raja_Ravi_Varma.jpg",
+      "durationSeconds": 342,
+      "published": true,
+      "featured": true,
+      "searchTokens": ["achyutam", "keshavam", "krishna", "rama", "bhajan", "hindi"],
+      "createdBy": "admin",
+      "rights": {
+        "rightsHolder": "Bhakti Records India",
+        "licenseReference": "Direct Artist Devotional Agreement 2026",
+        "permittedTerritories": ["IN", "GLOBAL"],
+        "permittedUsage": "Bhakti Music Exclusive Streaming",
+        "commercialAuthorized": true
+      }
+    }
+  ]
+}

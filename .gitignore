@@ -1,0 +1,34 @@
+# Node modules
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Flutter & Dart build artifacts
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+build/
+
+# Android build outputs & Gradle cache
+client/android/.gradle/
+client/android/app/build/
+client/android/build/
+android/.gradle/
+android/app/build/
+*.apk
+*.aab
+
+# Production web build (can be regenerated with npm run build)
+client/dist/
+
+# Large local media uploads (keep directory structure)
+server/uploads/audio/*.mp3
+!server/uploads/audio/.gitkeep
+server/uploads/artwork/*.tmp
+
+# Environment & OS files
+.env
+.env.local
+.DS_Store
+Thumbs.db
+*.log
