@@ -131,24 +131,35 @@ async function searchDirectYouTube(query) {
 
   if (Capacitor.isNativePlatform()) {
     // Native Android HTTP request (bypasses browser CORS completely)
-    const response = await CapacitorHttp.get({
-      url,
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        'Accept-Language': 'en-US,en;q=0.9,hi;q=0.8',
-      },
-    });
-    html = typeof response.data === 'string' ? response.data : JSON.stringify(response.data);
+    try {
+      const response = await CapacitorHttp.get({
+        url,
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+          'Accept-Language': 'en-US,en;q=0.9,hi;q=0.8',
+        },
+      });
+      html = typeof response.data === 'string' ? response.data : JSON.stringify(response.data);
+    } catch (e) {
+      console.warn('[YouTube Native] Error:', e);
+    }
   } else {
-    // In web browser
-    const response = await fetch(url, {
-      headers: {
-        'Accept-Language': 'en-US,en;q=0.9,hi;q=0.8',
-      },
-    });
-    html = await response.text();
+    // In web browser: attempt CORS-friendly fetch via public proxy
+    try {
+      const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 3500);
+      const res = await fetch(proxyUrl, { signal: controller.signal });
+      clearTimeout(timeoutId);
+      if (res.ok) {
+        html = await res.text();
+      }
+    } catch (_) {
+      // Gracefully fall back to iTunes Devotional API and seed catalog
+    }
   }
 
+  if (!html) return [];
   return parseYouTubeHtml(html);
 }
 

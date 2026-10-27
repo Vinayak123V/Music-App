@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useRef, useEffect } from 'react';
 import { useFavorites } from './FavoritesContext';
-import { resolveUrl } from '../config/api';
+import { resolveUrl, getServerUrl } from '../config/api';
 import { searchOnlineMusic } from '../services/onlineMusicService';
 
 const PlayerContext = createContext();
@@ -210,10 +210,14 @@ export const PlayerProvider = ({ children }) => {
     setIsBuffering(true);
     addRecentlyPlayed(targetSong);
 
-    // If song is from catalog and has no direct videoId or audioUrl, resolve stream on the fly
-    if (!targetSong.videoId && !targetSong.audioUrl) {
+    // Check if we need to resolve a live audio stream:
+    // If no videoId, and (either no audioUrl OR audioUrl points to local /uploads/ on static web where server is absent)
+    const isLocalUpload = targetSong.audioUrl?.startsWith('/uploads/');
+    const isStaticHost = !getServerUrl() && typeof window !== 'undefined' && !window.location.hostname.includes('localhost');
+
+    if (!targetSong.videoId && (!targetSong.audioUrl || (isLocalUpload && isStaticHost))) {
       try {
-        const query = targetSong.searchQuery || `${targetSong.title} ${targetSong.artist} devotional`;
+        const query = targetSong.searchQuery || `${targetSong.title} ${targetSong.artist || ''} devotional`;
         const onlineMatches = await searchOnlineMusic(query);
         if (onlineMatches && onlineMatches.length > 0) {
           const match = onlineMatches[0];
@@ -222,6 +226,7 @@ export const PlayerProvider = ({ children }) => {
             targetSong.source = 'youtube';
           } else if (match.audioUrl) {
             targetSong.audioUrl = match.audioUrl;
+            targetSong.source = match.source || 'online';
           }
           if (match.artworkUrl) {
             targetSong.artworkUrl = match.artworkUrl;
@@ -252,7 +257,7 @@ export const PlayerProvider = ({ children }) => {
       };
       startYt();
     } else {
-      // 2. Direct MP3 File
+      // 2. Direct Audio File / Stream
       if (ytPlayerRef.current && typeof ytPlayerRef.current.pauseVideo === 'function') {
         ytPlayerRef.current.pauseVideo();
       }
@@ -260,17 +265,36 @@ export const PlayerProvider = ({ children }) => {
       try {
         const audio = audioRef.current;
         audio.pause();
-        audio.src = resolveUrl(targetSong.audioUrl || '/uploads/audio/gayatri_mantra.mp3');
+        audio.src = resolveUrl(targetSong.audioUrl || '');
         audio.playbackRate = playbackRate;
         await audio.play();
         setIsPlaying(true);
       } catch (err) {
-        console.warn('[Player] Direct playback error, falling back:', err);
+        console.warn('[Player] Direct playback error, dynamically resolving online stream:', err);
         try {
-          const audio = audioRef.current;
-          audio.src = resolveUrl('/uploads/audio/gayatri_mantra.mp3');
-          await audio.play();
-          setIsPlaying(true);
+          const query = `${targetSong.title} ${targetSong.artist || ''} devotional`;
+          const onlineMatches = await searchOnlineMusic(query);
+          if (onlineMatches && onlineMatches.length > 0) {
+            const match = onlineMatches[0];
+            if (match.videoId) {
+              targetSong.videoId = match.videoId;
+              targetSong.source = 'youtube';
+              setCurrentSong({ ...targetSong });
+              if (ytPlayerRef.current && typeof ytPlayerRef.current.loadVideoById === 'function') {
+                ytPlayerRef.current.loadVideoById(targetSong.videoId);
+                ytPlayerRef.current.playVideo();
+              }
+              return;
+            } else if (match.audioUrl) {
+              targetSong.audioUrl = match.audioUrl;
+              setCurrentSong({ ...targetSong });
+              const audio = audioRef.current;
+              audio.src = match.audioUrl;
+              await audio.play();
+              setIsPlaying(true);
+              return;
+            }
+          }
         } catch (_) {}
       } finally {
         setIsBuffering(false);
